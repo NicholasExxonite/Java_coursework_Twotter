@@ -1,3 +1,5 @@
+import twooter.LogWindow;
+import twooter.Login;
 import twooter.Message;
 import javax.swing.*;
 import java.awt.*;
@@ -10,6 +12,9 @@ import java.util.ArrayList;
 public class coursework {
     static ArrayList<String> message = new ArrayList<>();
     public static void main(String[] args) {
+        LogWindow log = new LogWindow();
+        //Login login = new Login();
+        log.setName("Welcome!");
         JFrame frame = new JFrame("Twotter");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setSize(600, 800);
@@ -70,7 +75,7 @@ public class coursework {
         frame.getContentPane().add(BorderLayout.CENTER, ta);
         frame.setVisible(true);
 
-
+        //
         send.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
