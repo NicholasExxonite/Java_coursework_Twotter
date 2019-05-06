@@ -1,4 +1,4 @@
-package twooter;
+import twooter.TwooterClient;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,11 +10,15 @@ public class LogWindow extends JFrame {
     private JButton login = new JButton("Log in");
     private JButton signup = new JButton("Sign up");
     private JLabel message = new JLabel();
-    public LogWindow()
+    private TwooterClient cl;
+
+    //constructor for he login window.
+    public LogWindow(TwooterClient client)
     {
+        cl = client;
         this.setName("Welcome to Twotter!");
         this.setSize(600,600);
-        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         buttons.setLayout(new FlowLayout());
         setButtons();
         setIntroMessage();
@@ -30,11 +34,18 @@ public class LogWindow extends JFrame {
         login.setSize(200, 200);
         login.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                Login login = new Login();
+            public void actionPerformed(ActionEvent e)
+            {
+                Login login = new Login(cl);
             }
         });
         signup.setSize(200, 200);
+        signup.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Signup sigup = new Signup("Sign up!", cl);
+            }
+        });
         buttons.add(login);
         buttons.add(signup);
     }
