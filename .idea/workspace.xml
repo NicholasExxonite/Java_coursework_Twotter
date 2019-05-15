@@ -4,13 +4,10 @@
     <list default="true" id="0df38aa5-b918-44f6-ad9b-848f9ef5f476" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ChatWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/ChatWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/Login.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Signup.java" beforeDir="false" afterPath="$PROJECT_DIR$/Signup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coursework.java" beforeDir="false" afterPath="$PROJECT_DIR$/coursework.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Twooter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Twooter/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/twooter/TwooterClient$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/twooter/TwooterClient$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/twooter/TwooterClient$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/twooter/TwooterClient$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/twooter/TwooterClient$HTTPResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/twooter/TwooterClient$HTTPResponse.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/twooter/TwooterClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/twooter/TwooterClient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Twooter/coursework.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Twooter/coursework.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,8 +24,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/coursework.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="26" selection-start-line="26" selection-end-line="26" />
+            <state relative-caret-position="85">
+              <caret line="8" column="57" selection-start-line="8" selection-start-column="57" selection-end-line="8" selection-end-column="57" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -39,8 +36,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ChatWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="125" column="21" lean-forward="true" selection-start-line="125" selection-start-column="21" selection-end-line="125" selection-end-column="21" />
+            <state relative-caret-position="252">
+              <caret line="129" column="28" selection-start-line="129" selection-start-column="28" selection-end-line="129" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -63,7 +60,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Login.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="969">
+            <state relative-caret-position="286">
               <caret line="57" column="17" selection-start-line="57" selection-start-column="17" selection-end-line="57" selection-end-column="17" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -76,9 +73,23 @@
         <entry file="file://$PROJECT_DIR$/Signup.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="255">
-              <caret line="48" column="66" lean-forward="true" selection-start-line="48" selection-start-column="66" selection-end-line="48" selection-end-column="66" />
+              <caret line="54" column="43" selection-start-line="54" selection-start-column="43" selection-end-line="54" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/saveTokens.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#669#670#0" expanded="true" />
+                <element signature="e#702#703#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -137,18 +148,19 @@
         <option value="$PROJECT_DIR$/twooter/LogWindow.java" />
         <option value="$PROJECT_DIR$/Button.java" />
         <option value="$PROJECT_DIR$/LogWindow.java" />
-        <option value="$PROJECT_DIR$/coursework.java" />
         <option value="$PROJECT_DIR$/Login.java" />
+        <option value="$PROJECT_DIR$/Credentials.java" />
+        <option value="$PROJECT_DIR$/coursework.java" />
+        <option value="$PROJECT_DIR$/saveTokens.java" />
         <option value="$PROJECT_DIR$/Signup.java" />
         <option value="$PROJECT_DIR$/ChatWindow.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="954" />
-    <option name="y" value="105" />
-    <option name="width" value="981" />
-    <option name="height" value="1092" />
+    <option name="x" value="949" />
+    <option name="width" value="980" />
+    <option name="height" value="1091" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -164,11 +176,6 @@
             <path>
               <item name="Twooter" type="b2602c69:ProjectViewProjectNode" />
               <item name="Twooter" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Twooter" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Twooter" type="462c0819:PsiDirectoryNode" />
-              <item name="twooter" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -255,14 +262,21 @@
       <option name="project" value="LOCAL" />
       <updated>1557162774807</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Updated the twooter files. Now can post and retrieve basic messages successfully!">
+      <created>1557931709791</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1557931709791</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="735" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.075303644" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.3204047" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -294,7 +308,8 @@
     <MESSAGE value="Created a logWindow containing buttons for sign in and log in. When you click the log in button a simple log in window appears." />
     <MESSAGE value="Basic working user UI. Has a chatwindow with working send and reset buttons. Log/sign up promp window and a log in window." />
     <MESSAGE value="Fixed the UI a bit, you can successfully create a username and log in. Connected to the server and to the live feed successfully." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed the UI a bit, you can successfully create a username and log in. Connected to the server and to the live feed successfully." />
+    <MESSAGE value="Updated the twooter files. Now can post and retrieve basic messages successfully!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated the twooter files. Now can post and retrieve basic messages successfully!" />
   </component>
   <component name="editorHistoryManager">
     <entry file="jar://$PROJECT_DIR$/../../java-1.8.0-openjdk-1.8.0.201-2.b09.redhat.windows.x86_64/src.zip!/java/lang/String.java">
@@ -309,16 +324,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="137">
           <caret line="78" column="13" selection-start-line="78" selection-start-column="13" selection-end-line="78" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coursework.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -343,9 +348,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Credentials.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="42" lean-forward="true" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coursework.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="8" column="57" selection-start-line="8" selection-start-column="57" selection-end-line="8" selection-end-column="57" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/saveTokens.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#669#670#0" expanded="true" />
+            <element signature="e#702#703#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Login.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="969">
+        <state relative-caret-position="286">
           <caret line="57" column="17" selection-start-line="57" selection-start-column="17" selection-end-line="57" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -366,7 +400,7 @@
     <entry file="file://$PROJECT_DIR$/Signup.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
-          <caret line="48" column="66" lean-forward="true" selection-start-line="48" selection-start-column="66" selection-end-line="48" selection-end-column="66" />
+          <caret line="54" column="43" selection-start-line="54" selection-start-column="43" selection-end-line="54" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -375,8 +409,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ChatWindow.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="125" column="21" lean-forward="true" selection-start-line="125" selection-start-column="21" selection-end-line="125" selection-end-column="21" />
+        <state relative-caret-position="252">
+          <caret line="129" column="28" selection-start-line="129" selection-start-column="28" selection-end-line="129" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

@@ -1,5 +1,5 @@
 import twooter.TwooterClient;
-
+// randomness = 7a9f7b88-46cd-48e7-b3bb-a966924eddaf
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -12,6 +12,8 @@ public class Signup extends JFrame {
     private JLabel luser = new JLabel();
     private JButton register = new JButton("Register");
     private JPanel panel = new JPanel();
+    public static  saveTokens svTokens = new saveTokens();
+    public static Credentials cred = new Credentials();
     public static String token;
     public static String username;
     //private String regName;
@@ -44,9 +46,11 @@ public class Signup extends JFrame {
                 try {
                     username = name.getText();
                     token = client.registerName(username);
+
+                    svTokens.setCredentials(username, token);
                     System.out.println("Successfully registered!");
-                    //token = client.registerName(name.getText());
-                    System.out.println("your token is: " + token);
+
+                    System.out.println("your token is: " + svTokens.getToken(username));
                 }catch (java.io.IOException e1){
                     System.out.println(e1);
                 }

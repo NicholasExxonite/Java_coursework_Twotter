@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE preferences SYSTEM "http://java.sun.com/dtd/preferences.dtd">
+<preferences EXTERNAL_XML_VERSION="1.0">
+  <root type="user">
+    <map/>
+    <node name="tokens.txt">
+      <map>
+        <entry key="potatoe" value="b1dbe973-be8f-43d6-8282-762158a7c966&#10;"/>
+        <entry key="JoeRogan" value="01978299-a06b-42dd-a887-330c41838f84&#10;"/>
+      </map>
+    </node>
+  </root>
+</preferences>

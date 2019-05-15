@@ -126,7 +126,7 @@ public class ChatWindow extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 try{
-                    client.postMessage(Signup.token, Signup.username, "A test message");
+                    client.postMessage(Signup.svTokens.getToken(Signup.username), Signup.username, "howyadoin");
                     System.out.println("Printing message..");
                 }catch (java.io.IOException e1){
                     System.out.println(e1);
