@@ -8,12 +8,11 @@ import java.awt.event.ActionListener;
 public class Login extends JFrame {
     private String usrname;
     private JTextField username = new JTextField(10);
-    private JTextField password = new JTextField(10);
     private JPanel north = new JPanel();
     private JPanel south = new JPanel();
     private JLabel usr = new JLabel();
-    private JLabel pas = new JLabel();
     private JButton b = new JButton("Log in");
+    private JLabel alert = new JLabel();
     JLabel test = new JLabel();
     public Login(TwooterClient client){
         this.setName("Log in");
@@ -27,9 +26,7 @@ public class Login extends JFrame {
     }
     private void setCredentials(){
         usr.setText("Username:");
-        pas.setText("Password:");
         username.setName("Username");
-        password.setName("Password");
         north.setLayout(new FlowLayout());
         north.add(usr);
         north.add(username);
@@ -39,6 +36,7 @@ public class Login extends JFrame {
         /*south.add(pas);
         south.add(password);*/
         south.add(test);
+        south.add(alert);
     }
     private void checkLogin(TwooterClient client){
         b.addActionListener(new ActionListener() {
@@ -50,6 +48,10 @@ public class Login extends JFrame {
                         test.setText("You've logged in!");
                         System.out.println("You're in!");
                         ChatWindow chatWindow = new ChatWindow(client);
+                    }
+                    else{
+                        alert.setText("User with such name doesn't exist.");
+                        System.out.println("This user doesn't exist!");
                     }
                 }catch (java.io.IOException e1){
                     System.out.println(e1);

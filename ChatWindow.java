@@ -1,10 +1,16 @@
+import twooter.Message;
 import twooter.TwooterClient;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ChatWindow extends JFrame{
     //some variables used in the class
@@ -16,7 +22,11 @@ public class ChatWindow extends JFrame{
     private ArrayList<String> message = new ArrayList<>();
     private JButton send = new JButton("Send");
     private JButton reset = new JButton("Reset");
-
+    private JButton retrieve = new JButton("Retrieve messages");
+    private JButton post = new JButton("Post");
+    private Message msgToPost = new Message("", "nikolay", "Hello, test", 2000, 2020);
+    private Message[] msgs = new Message[30];
+    private JScrollPane scrpane = new JScrollPane();
     //constructor for the ChatWindow, takes the client as a parameter.
     ChatWindow(TwooterClient client){
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -27,6 +37,10 @@ public class ChatWindow extends JFrame{
         setMenuBar();
         setPanel(client);
         setTextArea();
+        //add textArea to a scroll pane so it can be scrollable.
+        /*scrpane.createVerticalScrollBar();
+        scrpane.add(ta);
+        scrpane.setLayout(new ScrollPaneLayout());*/
         //adding components to the frame
         this.getContentPane().add(BorderLayout.SOUTH, panel);
         this.getContentPane().add(BorderLayout.NORTH, mb);
@@ -75,6 +89,8 @@ public class ChatWindow extends JFrame{
         panel.add(tf);
         panel.add(send);
         panel.add(reset);
+        panel.add(retrieve);
+        panel.add(post);
 
         //Action listeners for sending messages from the textfield to the textarea and for resetting the textArea.
         send.addActionListener(new ActionListener() {
@@ -106,11 +122,55 @@ public class ChatWindow extends JFrame{
                 ta.setText(null);
             }
         });
+        post.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try{
+                    client.postMessage(Signup.token, Signup.username, "A test message");
+                    System.out.println("Printing message..");
+                }catch (java.io.IOException e1){
+                    System.out.println(e1);
+                }
+            }
+        });
+        retrieve.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                /*try{msgs.(client.getMessages().)
+                }catch (java.io.IOException e1){
+                    System.out.println(e1);
+                }*/
+
+                /*try{
+                    client.postMessage("someToken", "nikolay", "Hello, test!");
+                    System.out.println("Posting message!");
+                }catch (java.io.IOException e1){
+                    System.out.println(e1);
+                }*/
+                try{
+                    msgs = client.getMessages();
+                    Pattern pattern = Pattern.compile("[name:][.]\b");
+                    for (int i = 0; i < msgs.length; i++) {
+                        //System.out.println(msgs[i].toString());
+                        Message newMsg = msgs[i];
+                        /*Matcher matcher = pattern.matcher(newMsg.toString());
+                        System.out.println(matcher.group());*/
+                        System.out.println(newMsg);
+                        ta.append(newMsg + "\n");
+
+                    }
+                }catch (java.io.IOException e1){
+                    System.out.println(e1);
+                }
+            }
+        });
 
     }
     //some cosmetics
     public void setTextArea(){
         //text area in center
+        /*ta.setLineWrap(true);
+        ta.setWrapStyleWord(true);*/
         ta.setBackground(Color.LIGHT_GRAY);
     }
 }

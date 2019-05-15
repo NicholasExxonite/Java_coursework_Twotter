@@ -12,6 +12,8 @@ public class Signup extends JFrame {
     private JLabel luser = new JLabel();
     private JButton register = new JButton("Register");
     private JPanel panel = new JPanel();
+    public static String token;
+    public static String username;
     //private String regName;
     Signup(String name, TwooterClient client){
         this.setName(name);
@@ -40,8 +42,11 @@ public class Signup extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 /*regName = name.getText();*/
                 try {
-                    client.registerName(name.getText());
-                    System.out.println("Hello!");
+                    username = name.getText();
+                    token = client.registerName(username);
+                    System.out.println("Successfully registered!");
+                    //token = client.registerName(name.getText());
+                    System.out.println("your token is: " + token);
                 }catch (java.io.IOException e1){
                     System.out.println(e1);
                 }
