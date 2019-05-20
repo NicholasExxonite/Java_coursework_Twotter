@@ -19,7 +19,7 @@ public class coursework {
         };
         client.addUpdateListener(upListener);
         LogWindow log = new LogWindow(client);
-        System.out.println(Signup.cred.getToken("randomness"));
+       // System.out.println(Signup.cred.getToken("randomness"));
 
         /*Message msg = new Message("sfs", "name", "hello fucks!", 2000, 2020);
         System.out.println(msg.toString());*/

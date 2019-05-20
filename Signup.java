@@ -1,3 +1,4 @@
+import sun.security.krb5.Credentials;
 import twooter.TwooterClient;
 // randomness = 7a9f7b88-46cd-48e7-b3bb-a966924eddaf
 import javax.swing.*;
@@ -13,7 +14,7 @@ public class Signup extends JFrame {
     private JButton register = new JButton("Register");
     private JPanel panel = new JPanel();
     public static  saveTokens svTokens = new saveTokens();
-    public static Credentials cred = new Credentials();
+    //public static Credentials cred = new Credentials("");
     public static String token;
     public static String username;
     //private String regName;

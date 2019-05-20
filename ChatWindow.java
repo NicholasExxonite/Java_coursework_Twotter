@@ -9,6 +9,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.regex.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -149,14 +150,24 @@ public class ChatWindow extends JFrame{
                 }*/
                 try{
                     msgs = client.getMessages();
-                    Pattern pattern = Pattern.compile("[name:][.]\b");
+                    //String regex = "name:[a-zA-Z_0-9]*";
+                    Pattern pname = Pattern.compile("name:[a-zA-Z0-9\\s'#!@$%^&*()-]*");
+                    Pattern pmessage = Pattern.compile("message:[a-zA-Z0-9\\s'#!@$%^&*()-]*");
                     for (int i = 0; i < msgs.length; i++) {
                         //System.out.println(msgs[i].toString());
                         Message newMsg = msgs[i];
-                        /*Matcher matcher = pattern.matcher(newMsg.toString());
-                        System.out.println(matcher.group());*/
-                        System.out.println(newMsg);
-                        ta.append(newMsg + "\n");
+                        Matcher mname = pname.matcher(newMsg.toString());
+                        Matcher mmessage = pmessage.matcher(newMsg.toString());
+                        //boolean matches = Pattern.matches(regex, newMsg.toString());
+                        //System.out.println(matches);
+                        if(mname.find() && mmessage.find()){
+                            String name = mname.group().substring(5);
+                            String message = mmessage.group().substring(8);
+                            //System.out.println(matcher.group());
+                            System.out.println(name + ": " + message);
+                            ta.append(name + ": " + message +"\n");
+
+                        }
 
                     }
                 }catch (java.io.IOException e1){
