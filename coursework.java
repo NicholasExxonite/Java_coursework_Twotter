@@ -37,15 +37,6 @@ public class coursework {
         //A scheduler using the previously created runnable variable. Periodically refreshes the user.
         scheduler.scheduleAtFixedRate(runnable, 8, 8, TimeUnit.HOURS);
 
-        //initialzie the updateListener
-        UpdateListener upListener = new UpdateListener() {
-            @Override
-            public void handleUpdate(TwooterEvent twooterEvent) {
-
-            }
-        };
-        //adding the updatelistener to the client
-        client.addUpdateListener(upListener);
         //initialize the log in window
         LogWindow log = new LogWindow(client);
 

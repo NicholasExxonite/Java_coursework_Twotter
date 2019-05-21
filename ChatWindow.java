@@ -1,5 +1,7 @@
 import twooter.Message;
 import twooter.TwooterClient;
+import twooter.TwooterEvent;
+import twooter.UpdateListener;
 
 import javax.swing.*;
 import java.awt.*;
@@ -53,6 +55,19 @@ public class ChatWindow extends JFrame{
         this.getContentPane().add(BorderLayout.CENTER, ta);
         //set it visible
         this.setVisible(true);
+        //Updatelistener for the events
+        UpdateListener upListener = new UpdateListener() {
+            @Override
+            public void handleUpdate(TwooterEvent twooterEvent) {
+                //if the even is a message(2) then print it using the retrieveMsgs method!
+
+                if(twooterEvent.type == 2 ){
+                    retrieveMsgs(twooterEvent.payload, client);
+                }
+            }
+        };
+        //add the updatelistener to the client.
+        client.addUpdateListener(upListener);
     }
 
 
@@ -162,27 +177,24 @@ public class ChatWindow extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 try{
                     msgs = client.getMessages();
-                    //String regex = "name:[a-zA-Z_0-9]*";
-//                    Pattern pname = Pattern.compile("name:[a-zA-Z0-9\\s'#\"!@$%^&*()-]*");
-//                    Pattern pmessage = Pattern.compile("message:[a-zA-Z0-9\\s'#!@$%\"^&*()-]*");
-//                    Pattern pmessage = Pattern.compile("message:[a-zA-Z0-9\\s':;/.\\\\?><|`~{}\\]\\[\"#!@$%^&*()-]*");
-                    for (int i = 0; i < msgs.length; i++) {
-                        //System.out.println(msgs[i].toString());
-                        Message newMsg = msgs[i];
-                        Matcher mname = pname.matcher(newMsg.toString());
-                        Matcher mmessage = pmessage.matcher(newMsg.toString());
-                        //boolean matches = Pattern.matches(regex, newMsg.toString());
-                        //System.out.println(matches);
-                        if(mname.find() && mmessage.find()){
-                            String name = mname.group().substring(5);
-                            String message = mmessage.group().substring(8);
-                            //System.out.println(matcher.group());
-                            System.out.println(name + ": " + message);
-                            ta.append(name + ": " + message +"\n");
-
-                        }
-
-                    }
+                    retrieveMsgs(msgs.length);
+//                    for (int i = 0; i < msgs.length; i++) {
+//                        //System.out.println(msgs[i].toString());
+//                        Message newMsg = msgs[i];
+//                        Matcher mname = pname.matcher(newMsg.toString());
+//                        Matcher mmessage = pmessage.matcher(newMsg.toString());
+//                        //boolean matches = Pattern.matches(regex, newMsg.toString());
+//                        //System.out.println(matches);
+//                        if(mname.find() && mmessage.find()){
+//                            String name = mname.group().substring(5);
+//                            String message = mmessage.group().substring(8);
+//                            //System.out.println(matcher.group());
+//                            System.out.println(name + ": " + message);
+//                            ta.append(name + ": " + message +"\n");
+//
+//                        }
+//
+//                    }
                 }catch (java.io.IOException e1){
                     System.out.println(e1);
                 }
@@ -190,11 +202,49 @@ public class ChatWindow extends JFrame{
         });
 
     }
+    public void retrieveMsgs(int num) {
+        for (int i = 0; i < num; i++) {
+            //System.out.println(msgs[i].toString());
+            Message newMsg = msgs[i];
+            Matcher mname = pname.matcher(newMsg.toString());
+            Matcher mmessage = pmessage.matcher(newMsg.toString());
+            //boolean matches = Pattern.matches(regex, newMsg.toString());
+            //System.out.println(matches);
+            if (mname.find() && mmessage.find()) {
+                String name = mname.group().substring(5);
+                String message = mmessage.group().substring(8);
+                //System.out.println(matcher.group());
+                System.out.println(name + ": " + message);
+                ta.append(name + ": " + message + "\n");
+            }
+        }
+    }
+    public void retrieveMsgs(String payload, TwooterClient client) {
+
+        Message newMsg = null;
+        try{
+             newMsg = client.getMessage(payload);
+        }catch (java.io.IOException e1){
+            System.out.println(e1);
+        }
+        Matcher mname = pname.matcher(newMsg.toString());
+        Matcher mmessage = pmessage.matcher(newMsg.toString());
+        //boolean matches = Pattern.matches(regex, newMsg.toString());
+        //System.out.println(matches);
+        if (mname.find() && mmessage.find()) {
+            String name = mname.group().substring(5);
+            String message = mmessage.group().substring(8);
+            //System.out.println(matcher.group());
+            System.out.println(name + ": " + message);
+            ta.append(name + ": " + message + "\n");
+            }
+        }
     //some cosmetics
-    public void setTextArea(){
+    public void setTextArea() {
         //text area in center
-        /*ta.setLineWrap(true);
-        ta.setWrapStyleWord(true);*/
+        // ta.setLineWrap(true);
+        //ta.setWrapStyleWord(true);
         ta.setBackground(Color.LIGHT_GRAY);
     }
 }
+
