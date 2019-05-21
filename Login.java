@@ -45,6 +45,7 @@ public class Login extends JFrame {
                 try{
                     boolean bool = client.isActiveName(username.getText());
                     if (bool){
+                        Signup.username = username.getText();
                         test.setText("You've logged in!");
                         System.out.println("You're in!");
                         ChatWindow chatWindow = new ChatWindow(client);

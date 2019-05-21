@@ -20,14 +20,19 @@ public class ChatWindow extends JFrame{
     private JMenu m2 = new JMenu("Help");
     private JPanel panel = new JPanel();
     private JTextArea ta = new JTextArea();
-    private ArrayList<String> message = new ArrayList<>();
+    //private ArrayList<String> message = new ArrayList<>();
     private JButton send = new JButton("Send");
     private JButton reset = new JButton("Reset");
     private JButton retrieve = new JButton("Retrieve messages");
     private JButton post = new JButton("Post");
-    private Message msgToPost = new Message("", "nikolay", "Hello, test", 2000, 2020);
+    //private Message msgToPost = new Message("", "nikolay", "Hello, test", 2000, 2020);
     private Message[] msgs = new Message[30];
-    private JScrollPane scrpane = new JScrollPane();
+    //a boolean, so we can separately post to both our application and the twooter client
+    private Boolean toweb = true;
+
+    private Pattern pname = Pattern.compile("name:[a-zA-Z0-9\\s'#\"!@$%^&*()-]*");
+    private Pattern pmessage = Pattern.compile("message:[a-zA-Z0-9\\s':;/.\\\\?><|`~{}\\]\\[\"#!@$%^&*()-]*");
+
     //constructor for the ChatWindow, takes the client as a parameter.
     ChatWindow(TwooterClient client){
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -97,8 +102,23 @@ public class ChatWindow extends JFrame{
         send.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                message.add(tf.getText());
-                ta.append(message.get(0) + ("\n"));
+                if(tf.getText().startsWith("!")){
+                    String name = tf.getText().substring(1);
+                    try{
+                        msgs = client.getMessages(name);
+                        for (int i=0; i < msgs.length; i++){
+                            Message msg = msgs[i];
+                            Matcher mmessage = pmessage.matcher(msg.toString());
+                            if(mmessage.find()){
+                                ta.append(name + ": " + mmessage.group().substring(8) + "\n");
+                            }
+                        }
+                    }catch (java.io.IOException e1){
+                        System.out.println(e1);
+                    }
+                }
+
+                ta.append(Signup.username + ": " + tf.getText() + "\n");
                 //Just some tests for me!
                 try{
                     System.out.println("Username " + tf.getText() + " is active:" + client.isActiveName(tf.getText()));
@@ -112,47 +132,40 @@ public class ChatWindow extends JFrame{
                     System.out.println(e2);
                 }
                 // end of tests
-                message.remove(0);
                 tf.setText(null);
             }
         });
-        // reset the textfield when "reset" is pressed.
+        // reset the textarea when "reset" is pressed.
         reset.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ta.setText(null);
             }
         });
+        //post a message to the client
         post.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 try{
-                    client.postMessage(Signup.svTokens.getToken(Signup.username), Signup.username, "howyadoin");
+                    client.postMessage(Signup.svTokens.getToken(Signup.username), Signup.username, tf.getText());
+                    ta.append(Signup.username + ": " + tf.getText() + "\n");
                     System.out.println("Printing message..");
                 }catch (java.io.IOException e1){
                     System.out.println(e1);
                 }
+                tf.setText(null);
             }
         });
         retrieve.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                /*try{msgs.(client.getMessages().)
-                }catch (java.io.IOException e1){
-                    System.out.println(e1);
-                }*/
-
-                /*try{
-                    client.postMessage("someToken", "nikolay", "Hello, test!");
-                    System.out.println("Posting message!");
-                }catch (java.io.IOException e1){
-                    System.out.println(e1);
-                }*/
                 try{
                     msgs = client.getMessages();
                     //String regex = "name:[a-zA-Z_0-9]*";
-                    Pattern pname = Pattern.compile("name:[a-zA-Z0-9\\s'#!@$%^&*()-]*");
-                    Pattern pmessage = Pattern.compile("message:[a-zA-Z0-9\\s'#!@$%^&*()-]*");
+//                    Pattern pname = Pattern.compile("name:[a-zA-Z0-9\\s'#\"!@$%^&*()-]*");
+//                    Pattern pmessage = Pattern.compile("message:[a-zA-Z0-9\\s'#!@$%\"^&*()-]*");
+//                    Pattern pmessage = Pattern.compile("message:[a-zA-Z0-9\\s':;/.\\\\?><|`~{}\\]\\[\"#!@$%^&*()-]*");
                     for (int i = 0; i < msgs.length; i++) {
                         //System.out.println(msgs[i].toString());
                         Message newMsg = msgs[i];
