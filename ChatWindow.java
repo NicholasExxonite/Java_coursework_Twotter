@@ -7,6 +7,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -22,12 +25,11 @@ public class ChatWindow extends JFrame{
     private JMenu m2 = new JMenu("Help");
     private JPanel panel = new JPanel();
     private JTextArea ta = new JTextArea();
-    //private ArrayList<String> message = new ArrayList<>();
     private JButton send = new JButton("Send");
     private JButton reset = new JButton("Reset");
     private JButton retrieve = new JButton("Retrieve messages");
     private JButton post = new JButton("Post");
-    //private Message msgToPost = new Message("", "nikolay", "Hello, test", 2000, 2020);
+    //array of messages to contain the messages from the getMessages method. Max 30 messages.
     private Message[] msgs = new Message[30];
     //a boolean, so we can separately post to both our application and the twooter client
     private Boolean toweb = true;
@@ -45,10 +47,6 @@ public class ChatWindow extends JFrame{
         setMenuBar();
         setPanel(client);
         setTextArea();
-        //add textArea to a scroll pane so it can be scrollable.
-        /*scrpane.createVerticalScrollBar();
-        scrpane.add(ta);
-        scrpane.setLayout(new ScrollPaneLayout());*/
         //adding components to the frame
         this.getContentPane().add(BorderLayout.SOUTH, panel);
         this.getContentPane().add(BorderLayout.NORTH, mb);
@@ -70,7 +68,7 @@ public class ChatWindow extends JFrame{
         client.addUpdateListener(upListener);
     }
 
-
+    //Method setting the menubar of the application.
     public void setMenuBar(){
         mb.add(m1);
         mb.add(m2);
@@ -92,10 +90,24 @@ public class ChatWindow extends JFrame{
                 about.setSize(300, 300);
                 about.add(author);
                 about.setVisible(true);
-                about.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+                about.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
             }
         });
-        JMenuItem m12 = new JMenuItem("Save as ");
+        //when clicked save the current chat into a textfile.
+        JMenuItem m12 = new JMenuItem("Save");
+        m12.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try{
+
+                    //Save the contents of the textarea into the txt file
+                    BufferedWriter fileOut = new BufferedWriter(new FileWriter("savedChat.txt"));
+                    ta.write(fileOut);
+                }catch (IOException e1){
+                    e1.printStackTrace();
+                }
+            }
+        });
         m1.add(m11);
         m1.add(m12);
         m2.add(m21);
@@ -117,6 +129,8 @@ public class ChatWindow extends JFrame{
         send.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                //this following code returns the last 30 messages from a specific username. You have to type ! and then
+                // the username of the user: !someusername
                 if(tf.getText().startsWith("!")){
                     String name = tf.getText().substring(1);
                     try{
@@ -133,6 +147,7 @@ public class ChatWindow extends JFrame{
                     }
                 }
 
+                //this following code just tests the web service, the feed and if the name typed in the textfield is an active user.
                 ta.append(Signup.username + ": " + tf.getText() + "\n");
                 //Just some tests for me!
                 try{
@@ -164,7 +179,9 @@ public class ChatWindow extends JFrame{
 
                 try{
                     client.postMessage(Signup.svTokens.getToken(Signup.username), Signup.username, tf.getText());
-                    ta.append(Signup.username + ": " + tf.getText() + "\n");
+                    //we don't need to post the message to our application as well, since the application automatically will get what we
+                    //posted on the web client and post it in the application.
+                    //ta.append(Signup.username + ": " + tf.getText() + "\n");
                     System.out.println("Printing message..");
                 }catch (java.io.IOException e1){
                     System.out.println(e1);
@@ -172,29 +189,15 @@ public class ChatWindow extends JFrame{
                 tf.setText(null);
             }
         });
+
+        //retrieve the last 30 messages from the web client
         retrieve.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try{
                     msgs = client.getMessages();
                     retrieveMsgs(msgs.length);
-//                    for (int i = 0; i < msgs.length; i++) {
-//                        //System.out.println(msgs[i].toString());
-//                        Message newMsg = msgs[i];
-//                        Matcher mname = pname.matcher(newMsg.toString());
-//                        Matcher mmessage = pmessage.matcher(newMsg.toString());
-//                        //boolean matches = Pattern.matches(regex, newMsg.toString());
-//                        //System.out.println(matches);
-//                        if(mname.find() && mmessage.find()){
-//                            String name = mname.group().substring(5);
-//                            String message = mmessage.group().substring(8);
-//                            //System.out.println(matcher.group());
-//                            System.out.println(name + ": " + message);
-//                            ta.append(name + ": " + message +"\n");
-//
-//                        }
-//
-//                    }
+
                 }catch (java.io.IOException e1){
                     System.out.println(e1);
                 }
@@ -202,6 +205,9 @@ public class ChatWindow extends JFrame{
         });
 
     }
+
+    //method for retrieving the messages from the client. Takes as a parameter an int (num) , which specifies how many
+    //messages to be retrieved.
     public void retrieveMsgs(int num) {
         for (int i = 0; i < num; i++) {
             //System.out.println(msgs[i].toString());
@@ -219,6 +225,9 @@ public class ChatWindow extends JFrame{
             }
         }
     }
+
+    //another method for retrieving messages , but this one takes the payload from the updatelistener and the client parameters
+    //it returns the each message posted to the web client automatically , live.
     public void retrieveMsgs(String payload, TwooterClient client) {
 
         Message newMsg = null;
@@ -242,8 +251,8 @@ public class ChatWindow extends JFrame{
     //some cosmetics
     public void setTextArea() {
         //text area in center
-        // ta.setLineWrap(true);
-        //ta.setWrapStyleWord(true);
+        ta.setLineWrap(true);
+        ta.setWrapStyleWord(true);
         ta.setBackground(Color.LIGHT_GRAY);
     }
 }

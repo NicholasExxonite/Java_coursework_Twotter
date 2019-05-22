@@ -8,6 +8,8 @@
         <entry key="potatoe" value="b1dbe973-be8f-43d6-8282-762158a7c966&#10;"/>
         <entry key="JoeRogan" value="01978299-a06b-42dd-a887-330c41838f84&#10;"/>
         <entry key="someone" value="07f08571-8580-4abe-b12b-dae2c2151eee&#10;"/>
+        <entry key="nikolay" value="f5bdc8bb-8f8b-43f0-915f-1c54f40dfe66&#10;"/>
+        <entry key="peter" value="a79ba46e-3657-4f00-8cd3-3a4fee17a1a1&#10;"/>
       </map>
     </node>
   </root>

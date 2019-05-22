@@ -8,16 +8,17 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class Signup extends JFrame {
+    //some variables
     private JTextField name = new JTextField(10 );
     private JLabel lb = new JLabel();
     private JLabel luser = new JLabel();
     private JButton register = new JButton("Register");
     private JPanel panel = new JPanel();
     public static  saveTokens svTokens = new saveTokens();
-    //public static Credentials cred = new Credentials("");
     public static String token;
     public static String username;
-    //private String regName;
+
+    //constructor taking the client as a parameter.
     Signup(String name, TwooterClient client){
         this.setName(name);
         this.setSize(400, 400);
@@ -27,6 +28,7 @@ public class Signup extends JFrame {
         this.setVisible(true);
 
     }
+    //setting up the UI
     private void setUp(){
         luser.setText("Username:");
         panel.add(luser);
@@ -38,6 +40,8 @@ public class Signup extends JFrame {
         lb.setText("Please choose the username with which you want to be known");
         this.getContentPane().add(BorderLayout.NORTH, lb);
     }
+    //set up the register button with a method, taking the client as a parameter
+    //that way we can save the username and token.
     public void accRegister(TwooterClient client){
 
         register.addActionListener(new ActionListener() {
@@ -45,9 +49,11 @@ public class Signup extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 /*regName = name.getText();*/
                 try {
+                    //get the token and name.
                     username = name.getText();
                     token = client.registerName(username);
 
+                    //save the token and the username, through the setCredentails method in saveTokens class.
                     svTokens.setCredentials(username, token);
                     System.out.println("Successfully registered!");
 

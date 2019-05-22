@@ -6,13 +6,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class LogWindow extends JFrame {
+    //variables used
     private JPanel buttons = new JPanel();
     private JButton login = new JButton("Log in");
     private JButton signup = new JButton("Sign up");
     private JLabel message = new JLabel();
     private TwooterClient cl;
 
-    //constructor for he login window.
+    //constructor for he login window, takes the client as a parameter..
     public LogWindow(TwooterClient client)
     {
         cl = client;
@@ -30,8 +31,10 @@ public class LogWindow extends JFrame {
         this.setVisible(true);
     }
 
+    //method for setting up buttons
     private void setButtons(){
         login.setSize(200, 200);
+        //open the log in window
         login.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e)
@@ -40,6 +43,7 @@ public class LogWindow extends JFrame {
             }
         });
         signup.setSize(200, 200);
+        //open the sign up window
         signup.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

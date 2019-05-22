@@ -13,7 +13,7 @@ import java.util.prefs.Preferences;
 
 public class coursework {
     static final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-    static ArrayList<String> message = new ArrayList<>();
+    //static ArrayList<String> message = new ArrayList<>();
 
     public static void main(String[] args) {
         //initialize the twooter client
